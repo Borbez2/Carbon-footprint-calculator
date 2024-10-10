@@ -4,18 +4,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-# Color palette from the provided image
 colors = {
-    'background': '#a3b899',  # Lightest green
-    'button_bg': '#4a6741',    # Darker green for buttons
-    'button_fg': '#ffffff',    # White text for buttons
-    'label_fg': '#2d3436',     # Dark gray for labels
-    'frame_bg': '#f5f5f5',     # Light gray for frames
-    'slider_bg': '#4d5d53',    # Gray-green for sliders
+    'background': '#a3b899',
+    'button_bg': '#82b8be',
+    'button_fg': '#000000',
+    'label_fg': '#2d3436',
+    'frame_bg': '#f5f5f5',
+    'slider_bg': '#4d5d53',
 }
 
 window = tk.Tk()
-window.geometry("800x600")
+window.geometry("1497x944")
 window.title("Carbon Footprint Calculator")
 window.configure(bg=colors['background'])
 
@@ -34,7 +33,7 @@ user_inputs = {
 }
 
 progress_var = tk.DoubleVar()
-progress_bar = ttk.Progressbar(window, maximum=10, variable=progress_var)
+progress_bar = ttk.Progressbar(window, maximum=11, variable=progress_var)
 
 questions = [
     "How many hours do you drive per day?",
@@ -64,14 +63,12 @@ widgets = [
     ttk.Combobox(window, textvariable=user_inputs['recycling'], values=['Yes', 'No', 'Sometimes'])
 ]
 
-# Configure slider style
 style = ttk.Style()
 style.theme_use("clam")
 style.configure("TScale", background=colors['background'], troughcolor=colors['frame_bg'], sliderthickness=20, sliderrelief='flat')
 
 current_question = 0
 
-# Label to dynamically show the slider value
 slider_value_label = tk.Label(window, text="1", font=("Arial", 12), bg=colors['background'], fg=colors['label_fg'])
 
 def update_slider_value(value):
@@ -81,7 +78,7 @@ def show_intro_screen():
     for widget in window.winfo_children():
         widget.pack_forget()
     global intro_label, start_button
-    intro_label = tk.Label(window, text="Welcome to the Carbon Footprint Calculator\nThere are 10 questions to answer.", font=("Arial", 16), bg=colors['background'], fg=colors['label_fg'], pady=20)
+    intro_label = tk.Label(window, text="Welcome to the Carbon Footprint Calculator\nThere are 10 questions to answer.", font=("Impact", 30), bg=colors['background'], fg=colors['label_fg'], pady=20)
     start_button = tk.Button(window, text="Start", command=start_questionnaire, bg=colors['button_bg'], fg=colors['button_fg'], font=("Arial", 12, "bold"), padx=20, pady=10)
     intro_label.pack(pady=50)
     start_button.pack()
